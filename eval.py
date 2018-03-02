@@ -19,6 +19,7 @@ from icdar import restore_rectangle
 
 FLAGS = tf.app.flags.FLAGS
 
+
 def get_images():
     '''
     find image files in test data path
@@ -87,7 +88,7 @@ def detect(score_map, geo_map, timer, score_map_thresh=0.8, box_thresh=0.1, nms_
     # restore
     start = time.time()
     text_box_restored = restore_rectangle(xy_text[:, ::-1]*4, geo_map[xy_text[:, 0], xy_text[:, 1], :]) # N*4*2
-    print('{} text boxes before nms'.format(text_box_restored.shape[0]))
+    # print('{} text boxes before nms'.format(text_box_restored.shape[0]))
     boxes = np.zeros((text_box_restored.shape[0], 9), dtype=np.float32)
     boxes[:, :8] = text_box_restored.reshape((-1, 8))
     boxes[:, 8] = score_map[xy_text[:, 0], xy_text[:, 1]]
@@ -123,7 +124,6 @@ def sort_poly(p):
 def main(argv=None):
     import os
     os.environ['CUDA_VISIBLE_DEVICES'] = FLAGS.gpu_list
-
 
     try:
         os.makedirs(FLAGS.output_dir)

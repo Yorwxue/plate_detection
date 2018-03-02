@@ -24,6 +24,15 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+plate/
+result_chinese/
+result/
+output.avi
+1.avi
+2.avi
+3.avi
+checkpoint/
+yolov2/*.h5
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
